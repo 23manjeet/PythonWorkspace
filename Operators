@@ -1,0 +1,25 @@
+a = 5
+b = 2
+
+# print(f"a+b: {a+b}")
+# print(f"a-b: {a-b}")
+# print(f"a*b: {a*b}")
+# print(f"a/b: {a/b}")
+# print(f"a//b: {a//b}")
+# print(f"a**b: {a**b}")
+# print(f"a%b: {a%b}")
+# print(f"True and False: {True and False}")
+# print(f"True or False: {True or False}")
+# print(f"not True: {not True}")
+# print(f": {}")
+# print(f": {}")
+# print(f": {}")
+# print(f": {}")
+# print(f": {}")
+# print(f": {}")
+# print(f": {}")
+
+ab = ['p','y','t','h','o','n']
+bc = ab[0]
+print(bc)
+
