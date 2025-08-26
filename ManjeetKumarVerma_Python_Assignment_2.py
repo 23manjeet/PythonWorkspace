@@ -238,14 +238,24 @@
 #     Then I will add the changes to staging area by using "git add <file_names>". Then commit the changes by using "git commit -m 'message'".
 #     Now I will push the code in remote repository by using "git push origin <branch_name>".
 #     After the local process is done we will go to github and create a new pull request for the changes we pushed. This pull request
-#     will be verified by someone , if correct then the pull request will be accepted and then the branch changes will be merged
+#     will be reviewed by someone , if correct then the pull request will be accepted and then the branch changes will be merged
 #     in the main branch.
 
 # Q3: What’s the difference between git reset --soft HEAD~1 and git checkout -- <file>? When would you use each?
+# ans: "git reset --soft HEAD~1" deletes the last commit but keeps the changes in staged area.
+#     "git checkout -- <file>" reverts only the specified files in your working directory back to their last committed state,
+#     discarding any changes made since the last commit.
 
 # Q4: How can code reviews improve code quality? Mention two benefits.
+# ans: Code reviews can help to catch bugs and issues in our  code. 
+#     It also helps in fast development of bug free code.
+
 # Q5: In a GitHub repo, you’re on a branch and want to merge your code into main.
 #       What Git commands would you run?
+# ans: step1= switch to main branch in local = "git checkout main"
+#     step2= pull the latest code in main branch from github to avoid any conflicts in future. = "git pull origin main"
+#     step3= merge the code of your branch in the main branch = "git merge <branch_name>"
+#     step4= push the code to main in github = "git push origin main"
 
 #XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -253,15 +263,69 @@
 # -------------------
 # Q1: You're working in a team of 4. Two members pushed changes to the same file.
 #   Simulate a small scenario:
-    #   You make a change
-    #   Another person edits the same line
-    #   Show how Git would display the conflict and how you’d manually fix it.
+#       You make a change
+#       Another person edits the same line
+#       Show how Git would display the conflict and how you’d manually fix it.
+
+# ans: Suppose our project has a file name AdminUser.txt. In the file there is a variable adminUser having a value "ABC".
+#     Now I changed the value of the variable to "Manjeet" and pushed and merged the code in main branch.
+#     Another person changed the variable to "Devin" in his branch and trying to push the code in main. He will get a conflict
+#     as we both have changed the same line of code, so git detected and overlapping text and thus the merge conflict.
+#     Now git will display the conflict as this:
+#     <<<<<<< HEAD
+#     adminUser = "Manjeet"
+#     =======
+#     adminUser = "Devin"
+#     >>>>>>> other-branch
+
+#     As we get the merge conflict we need to choose which line of code we want to keep and then push the code manually.
+
+
 # Q2: Write a Python program that:
     # Takes a user's name, age, and city.
     # Checks if age > 18.
     # If yes, prints: “Hello , you are eligible to vote in .”
     # Else: “Sorry , you are too young.”
+
+# name = input("Enter your name: ")
+# age = int(input("Enter your age: "))
+# city = input("Enter your city: ")
+# if(age>18):
+#     print("Hello , you are eligible to vote in .")
+# else:
+#     print("Sorry , you are too young.")
+
 # Q3: Simulate the following Git workflow in 5 commands:
 #   You clone a repo, create a branch, make changes, commit, and push it.
+
+# ans: a) git clone <url>
+#     b)git checkout -b <branch_name>
+#     c)after making changes, git add .
+#     d)git commit -m "message"
+#     e)git push origin <branch_name>
+
+
 # Q4: Write a Python snippet using at least 3 different operators (bitwise, logical, comparison) in a real-world context (e.g., security check, eligibility, etc.)
+
+# age = 20
+# has_permission = True
+# flags = 6  # binary 110
+
+# # Comparison operator: check if age is at least 18
+# is_adult = (age >= 18)
+
+# # Bitwise operator: check if the 2nd bit (value 2) is set in flags
+# has_flag = (flags & 2) != 0
+
+# # Logical operator: check if user is adult and has permission and the flag
+# if is_adult and has_permission and has_flag:
+#     print("Access allowed")
+# else:
+#     print("Access denied")
+
+
 # Q5: You accidentally committed sensitive data. How would you undo the last commit but keep changes in your working directory? Then re-commit without the sensitive file.
+
+# ans: To undo the last commit I will use:- git reset --soft HEAD~1
+#     To remove the sensitive file from staging area:- git restore --staged <sensitive-file-path>
+#     Now simply commit the files in staged area:- git commit -m "changes without sensitive file"
